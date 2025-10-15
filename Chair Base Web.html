@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chair Base</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0e14;
+      --panel:#111827;
+      --panel-2:#0f172a;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --border:rgba(255,255,255,.08);
+      --normal-1:#e2e8f0; --normal-2:#94a3b8;
+      --magma-1:#ff7a18; --magma-2:#f30000;
+      --celestial-1:#6ee7ff; --celestial-2:#a78bfa;
+      --gold-1:#FFD700; --gold-2:#FFB100;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--text)}
+    body{font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    .container{max-width:1200px;margin:0 auto;padding:32px 18px 64px;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+    .title{font-family:'Bebas Neue', system-ui;font-size:clamp(28px,7vw,60px);letter-spacing:.02em;line-height:1;margin:0}
+    .subtitle{margin:0;font-size:14px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr;gap:22px}
+    @media(min-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
+    .tier{position:relative;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--border);border-radius:18px;overflow:visible}
+    .tier__header{display:flex;align-items:flex-end;justify-content:space-between;padding:22px 20px 10px;border-bottom:1px solid var(--border)}
+    .tier__name{font-family:'Bebas Neue';font-size:clamp(26px,6.5vw,48px);letter-spacing:.04em;margin:0}
+    .tag{font-size:12px;border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:var(--muted)}
+    .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:8px;padding:16px 16px 20px}
+    .item{display:grid;grid-template-columns:auto 1fr auto;gap:12px;background:rgba(255,255,255,.02);border:1px solid var(--border);padding:12px 14px;border-radius:12px}
+    .badge{font-weight:600;font-size:11px;letter-spacing:.06em;padding:6px 8px;border-radius:8px;border:1px solid var(--border);min-width:92px;text-align:center}
+    .item h4{font-size:15px;font-weight:600;margin:0}
+    .meta{margin-left:auto;text-align:right;white-space:nowrap;min-width:140px}
+    .meta small{display:block;color:var(--muted);font-size:11px}
+    .meta strong{font-feature-settings:'tnum' 1;}
+    .tier--normal .tier__name{background:linear-gradient(90deg,var(--normal-1),var(--normal-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .tier--magma{border:1px solid rgba(255,90,0,.25);box-shadow:0 0 0 1px rgba(255,90,0,.05) inset,0 10px 40px -12px rgba(255,60,0,.35)}
+    .tier--magma .tier__header{background:radial-gradient(1200px 300px at 50% -120px, rgba(255,68,0,.35), transparent 60%),linear-gradient(180deg,rgba(255,68,0,.08),transparent)}
+    .tier--magma .tier__name{background:linear-gradient(90deg,var(--magma-1),var(--magma-2));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 30px rgba(243,70,0,.25)}
+    .tier--celestial{border:1px solid rgba(110,231,255,.25);box-shadow:0 0 0 1px rgba(110,231,255,.05) inset,0 10px 40px -12px rgba(110,231,255,.3)}
+    .tier--celestial .tier__header{background:radial-gradient(1200px 300px at 50% -120px, rgba(110,231,255,.25), transparent 60%),linear-gradient(180deg,rgba(110,231,255,.08),transparent)}
+    .tier--celestial .tier__name{background:linear-gradient(90deg,var(--celestial-1),var(--celestial-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+    /* JEFES */
+    .boss-section{margin-top:60px;text-align:center;}
+    .boss-section h2{font-family:'Bebas Neue';font-size:clamp(36px,8vw,70px);color:#FFD700;text-shadow:0 0 20px rgba(255,215,0,0.6);margin-bottom:20px;}
+    .boss-card{background:linear-gradient(135deg,var(--gold-1),var(--gold-2));border-radius:25px;padding:40px;margin:0 auto;max-width:700px;color:#1a1a1a;box-shadow:0 0 40px rgba(255,215,0,0.4);position:relative;overflow:hidden;animation:shine 4s infinite linear;}
+    .boss-card h3{font-family:'Bebas Neue';font-size:clamp(30px,7vw,60px);margin:0 0 10px;}
+    .boss-card .tag{background:rgba(0,0,0,0.15);color:#1a1a1a;border:none;font-weight:bold;}
+    .boss-meta{font-size:18px;}
+    @keyframes shine{0%{box-shadow:0 0 30px rgba(255,215,0,0.4);}50%{box-shadow:0 0 60px rgba(255,255,150,0.8);}100%{box-shadow:0 0 30px rgba(255,215,0,0.4);}}
+
+    footer{margin-top:60px;font-size:12px;color:var(--muted);text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="title">Chair Base</h1>
+      <p class="subtitle">Diseño sin imagen · tipografías nuevas y sección MAGMA con color de magma</p>
+    </header>
+
+    <section class="grid">
+      <article class="tier tier--normal">
+        <div class="tier__header">
+          <h2 class="tier__name">NORMAL</h2>
+          <span class="tag">rareza base</span>
+        </div>
+        <div class="list">
+          <div class="item"><span class="badge">EPIC CHAIR</span><h4>Probabilidad 30%</h4><div class="meta"><small>cooldown</small><strong>230s</strong></div></div>
+          <div class="item"><span class="badge">RARE CHAIR</span><h4>Probabilidad 10%</h4><div class="meta"><small>cooldown</small><strong>170s</strong></div></div>
+          <div class="item"><span class="badge">CHAIR</span><h4>Probabilidad 70%</h4><div class="meta"><small>cooldown</small><strong>100s</strong></div></div>
+          <div class="item"><span class="badge">MITIC CHAIR</span><h4>Probabilidad 10%</h4><div class="meta"><small>cooldown</small><strong>500s</strong></div></div>
+          <div class="item"><span class="badge">LEGENDARY CHAIR</span><h4>Probabilidad 15%</h4><div class="meta"><small>cooldown</small><strong>370s</strong></div></div>
+          <div class="item"><span class="badge">SECRET CHAIR</span><h4>Probabilidad 0.1%</h4><div class="meta"><small>cooldown</small><strong>1000s</strong></div></div>
+        </div>
+      </article>
+
+      <article class="tier tier--magma">
+        <div class="tier__header">
+          <h2 class="tier__name">MAGMA</h2>
+          <span class="tag">caliente 🔥</span>
+        </div>
+        <div class="list">
+          <div class="item"><span class="badge">EPIC CHAIR</span><h4>Probabilidad 10%</h4><div class="meta"><small>cooldown</small><strong>400s</strong></div></div>
+          <div class="item"><span class="badge">RARE CHAIR</span><h4>Probabilidad 30%</h4><div class="meta"><small>cooldown</small><strong>270s</strong></div></div>
+          <div class="item"><span class="badge">CHAIR</span><h4>Probabilidad 60%</h4><div class="meta"><small>cooldown</small><strong>200s</strong></div></div>
+          <div class="item"><span class="badge">MITIC CHAIR</span><h4>Probabilidad 0.5%</h4><div class="meta"><small>cooldown</small><strong>2000s</strong></div></div>
+          <div class="item"><span class="badge">LEGENDARY CHAIR</span><h4>Probabilidad 0.07%</h4><div class="meta"><small>cooldown</small><strong>4000s</strong></div></div>
+          <div class="item"><span class="badge">SECRET CHAIR</span><h4>Probabilidad 0.01%</h4><div class="meta"><small>cooldown</small><strong>10000s</strong></div></div>
+        </div>
+      </article>
+
+      <article class="tier tier--celestial">
+        <div class="tier__header">
+          <h2 class="tier__name">CELESTIAL</h2>
+          <span class="tag">ultra</span>
+        </div>
+        <div class="list">
+          <div class="item"><span class="badge">EPIC CHAIR</span><h4>Probabilidad 0.10%</h4><div class="meta"><small>cooldown</small><strong>800s</strong></div></div>
+          <div class="item"><span class="badge">RARE CHAIR</span><h4>Probabilidad 0.50%</h4><div class="meta"><small>cooldown</small><strong>600s</strong></div></div>
+          <div class="item"><span class="badge">CHAIR</span><h4>Probabilidad 39%</h4><div class="meta"><small>cooldown</small><strong>200s</strong></div></div>
+          <div class="item"><span class="badge">MITIC CHAIR</span><h4>Probabilidad 0.02%</h4><div class="meta"><small>cooldown</small><strong>3000s</strong></div></div>
+          <div class="item"><span class="badge">LEGENDARY CHAIR</span><h4>Probabilidad 0.005%</h4><div class="meta"><small>cooldown</small><strong>5000s</strong></div></div>
+          <div class="item"><span class="badge">SECRET CHAIR</span><h4>Probabilidad 0.0001%</h4><div class="meta"><small>cooldown</small><strong>20000s</strong></div></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- SECCIÓN DE JEFES -->
+    <section class="boss-section">
+      <h2>JEFES</h2>
+      <div class="boss-card">
+        <h3>👑 EL REY</h3>
+        <span class="tag">Primer Boss</span>
+        <div class="boss-meta">
+          <p><strong>Probabilidad:</strong> 0.00009%</p>
+          <p><strong>Cooldown:</strong> 30000s</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="hint">¿Quieres que ajuste textos, porcentajes o añada más tiers? Dímelo y lo adapto al pixel.</p>
+    </footer>
+  </div>
+</body>
+</html>
